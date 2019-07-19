@@ -53,8 +53,7 @@ public class UserController {
 
 	@PutMapping(value = "/{id}", consumes = { APPLICATION_JSON_VALUE, APPLICATION_XML_VALUE })
 	public String updateProduct(@PathVariable int id, @RequestBody User user) {
-		user.setId(id);
-		if (userService.updateUser(user) == 1) {
+		if (userService.updateUser(id,user) == 1) {
 			return "SUCCESS";
 		} else {
 			return "FAILURE";

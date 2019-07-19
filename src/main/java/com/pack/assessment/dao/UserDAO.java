@@ -11,7 +11,7 @@ public interface UserDAO {
 	public int creatUser(User user);
 	public List<User> listAllUser();
 	public User findByIdUser(long id);
-	public int updateUser(User user);
+	public int updateUser(long id, User user);
 	public int deleteUser(long id);
 	
 	public int createPost(long id, Post post);

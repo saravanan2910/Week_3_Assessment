@@ -34,16 +34,19 @@ public class HibernateUserDAOImpl implements UserDAO {
 
 	}
 
-	public int updateUser(User user) {
-		User user2 = findByIdUser(user.getId());
+	public int updateUser(long id, User user) {
 		Session session = sessionFactory.getCurrentSession();
-		if (user.getUsername() == null)
-			user.setUsername(user2.getUsername());
-		if (user.getEmail() == null)
-			user.setEmail(user2.getEmail());
-		if (user.getPhone() == 0)
-			user.setPhone(user2.getPhone());
-		session.saveOrUpdate(user);
+		User user2 = session.get(User.class,id);
+		
+		if(user2 !=null) {
+			if(user.getUsername() != null)
+				user2.setUsername(user.getUsername());
+			if(user.getEmail() != null)
+				user2.setEmail(user.getEmail());
+			if(user.getAddress() != null)
+				user2.setAddress(user.getAddress());
+		}
+		session.saveOrUpdate(user2);
 		return 1;
 	}
 
